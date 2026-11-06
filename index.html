@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Anastasia Parvitskaya</title>
+<meta name="description" content="Interior designer and 3D visualizer. Completed projects, 3D visualizations and working drawings.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+html{-webkit-text-size-adjust:100%}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+/* Layout: a drawing sheet. Each project opens with a title block (object, scale of work, status), then 3D-vs-built pairs, then a photo set. */
+:root{
+  --paper:#f2f3f1; --sheet:#fbfbfa; --ink:#17181c; --muted:#62656d; --rule:#cfd2d6;
+  --stamp:#2c30a0;             /* the blue-violet ink of her drawing title blocks */
+  --scrim:rgba(14,15,18,.94);
+  --f-display:"Archivo",system-ui,sans-serif;
+  --f-body:"Archivo",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#121317; --sheet:#1a1b20; --ink:#e9eaee; --muted:#9a9ca6; --rule:#30323a; --stamp:#9ea2ff; color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#121317; --sheet:#1a1b20; --ink:#e9eaee; --muted:#9a9ca6; --rule:#30323a; --stamp:#9ea2ff; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1240px;margin:0 auto}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--stamp);outline-offset:3px}
+
+/* header */
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:20px;
+  border-bottom:1px solid var(--rule);font-family:var(--f-mono);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase}
+.top nav{display:flex;gap:18px;flex-wrap:wrap}
+.top nav a{text-decoration:none;color:var(--muted)} .top nav a:hover{color:var(--ink)}
+
+.hero{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);padding-block:clamp(36px,7vw,84px) clamp(28px,5vw,56px);align-items:end}
+.hero h1{font-family:var(--f-display);font-stretch:118%;font-weight:760;font-size:clamp(40px,7.4vw,96px);line-height:.92;
+  letter-spacing:-.025em;margin:0;text-wrap:balance}
+.hero .role{font-family:var(--f-display);font-stretch:80%;font-weight:420;font-size:clamp(20px,2.4vw,28px);margin:18px 0 0;color:var(--muted)}
+.hero p{margin:0;max-width:52ch}
+.hero .lead{display:flex;flex-direction:column;gap:18px}
+.tools{font-family:var(--f-mono);font-size:12.5px;color:var(--muted);letter-spacing:.02em}
+.note{border-left:2px solid var(--stamp);padding-left:12px;color:var(--ink);font-weight:500}
+.mail{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-family:var(--f-mono);font-size:14px}
+.mail span{user-select:all}
+.btn{font:inherit;font-size:12px;text-transform:uppercase;letter-spacing:.06em;border:1px solid var(--ink);background:transparent;color:var(--ink);
+  padding:6px 12px;cursor:pointer;border-radius:0}
+.btn:hover{background:var(--ink);color:var(--paper)}
+
+.cover{margin:0;position:relative}
+.cover button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in}
+.cover img{width:100%;aspect-ratio:21/9;object-fit:cover;display:block}
+@media (max-width:640px){.cover img{aspect-ratio:4/3}}
+
+/* project */
+.project{padding-block:clamp(48px,8vw,96px) 0}
+.stampbar{display:grid;grid-template-columns:minmax(0,2.2fr) repeat(3,minmax(0,1fr));border:1.5px solid var(--stamp);color:var(--stamp);
+  font-family:var(--f-mono);font-size:12px}
+.stampbar>div{padding:10px 14px;border-left:1px solid var(--stamp);min-width:0}
+.stampbar>div:first-child{border-left:0}
+.stampbar small{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;opacity:.75}
+.stampbar b{font-weight:500;font-size:13px;color:var(--ink)}
+.stampbar h2{font-family:var(--f-display);font-stretch:112%;font-weight:700;font-size:clamp(22px,3vw,34px);line-height:1.05;margin:2px 0 0;color:var(--ink);letter-spacing:-.01em;text-wrap:balance}
+@media (max-width:760px){.stampbar{grid-template-columns:1fr 1fr}.stampbar>div:first-child{grid-column:1/-1}
+  .stampbar>div:nth-child(2){border-left:0}.stampbar>div:nth-child(n+2){border-top:1px solid var(--stamp)}}
+.intro{max-width:62ch;margin:22px 0 0}
+
+h3{font-family:var(--f-mono);font-weight:500;font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);
+  margin:44px 0 14px;display:flex;align-items:center;gap:12px}
+h3::after{content:"";flex:1;height:1px;background:var(--rule)}
+
+.pairs{display:grid;gap:28px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.pair figure{margin:0;position:relative;min-width:0}
+.pair img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.tag{position:absolute;left:0;top:0;background:var(--sheet);color:var(--ink);font-family:var(--f-mono);font-size:11px;
+  text-transform:uppercase;letter-spacing:.08em;padding:5px 9px}
+.tag.built{background:var(--stamp);color:var(--sheet)}
+.pair figcaption{grid-column:1/-1;font-size:14px;color:var(--muted);margin-top:4px}
+@media (max-width:560px){.pair{grid-template-columns:1fr}}
+
+.grid{columns:3 280px;column-gap:6px}
+.grid button,.pair button,.sheets button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;color:inherit;text-align:left}
+.grid button{break-inside:avoid;margin-bottom:6px;position:relative}
+.grid img{width:100%;height:auto;display:block;background:var(--rule)}
+.grid .cap{position:absolute;left:0;bottom:0;background:var(--sheet);font-family:var(--f-mono);font-size:11px;padding:4px 8px;
+  text-transform:uppercase;letter-spacing:.06em;opacity:0;transition:opacity .2s}
+.grid button:hover .cap,.grid button:focus-visible .cap{opacity:1}
+@media (hover:none){.grid .cap{opacity:1}}
+button img{transition:filter .25s}
+button:hover img{filter:brightness(1.06)}
+
+.sheets{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:14px}
+.sheets figure{margin:0;background:#fff;border:1px solid var(--rule);padding:10px}
+.sheets img{width:100%;aspect-ratio:1.41/1;object-fit:contain;display:block;background:#fff}
+.sheets figcaption{font-family:var(--f-mono);font-size:11.5px;color:#4a4d57;margin-top:8px;line-height:1.4}
+
+footer{margin-top:clamp(64px,10vw,120px);border-top:1.5px solid var(--stamp);padding-block:28px 48px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:baseline}
+footer .name{font-family:var(--f-display);font-stretch:118%;font-weight:720;font-size:clamp(22px,3vw,32px);letter-spacing:-.01em}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:50;background:var(--scrim);display:grid;grid-template-rows:auto 1fr auto;color:#e9eaee;
+  padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
+.lb[hidden]{display:none!important}
+.lb header,.lb .foot{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px;font-family:var(--f-mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+.lb .stage{position:relative;min-height:0;display:flex;align-items:center;justify-content:center;padding:0 56px}
+.lb img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+.lb .nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:64px;border:0;background:rgba(255,255,255,.08);color:#fff;font-size:22px;cursor:pointer}
+.lb .nav:hover{background:rgba(255,255,255,.18)}
+.lb .prev{left:6px}.lb .next{right:6px}
+.lb .close{border:1px solid rgba(255,255,255,.5);background:none;color:#fff;font:inherit;padding:6px 12px;cursor:pointer}
+@media (max-width:560px){.lb .stage{padding:0}.lb .nav{background:rgba(0,0,0,.35)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <span>A. Parvitskaya · Interiors</span>
+    <nav aria-label="Sections">
+      <a href="#office">Office</a><a href="#cottage">Cottage</a><a href="#renders">3D visualizations</a><a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>Anastasia Parvitskaya</h1>
+      <p class="role">Interior designer &amp; 3D visualizer</p>
+    </div>
+    <div class="lead">
+      <p>More than 50 interior projects in Saint Petersburg: apartments, cottages, offices and a record shop. I take each project from the client brief and on-site measurement through space planning, 3D visualization of every room, a full set of working drawings, furniture and materials selection, and author's supervision during construction.</p>
+      <p class="note">Selected work.</p>
+      <p class="tools">3ds Max · Corona · V-Ray · SketchUp · AutoCAD · CorelDRAW · Photoshop</p>
+      <p class="tools">Haifa, Israel · working remotely</p>
+    </div>
+  </section>
+
+  <figure class="cover"><button type="button" data-set="cover" data-i="0" aria-label="Open photo"><img src="img/full/office/20220614-792A1252-HDR.webp" alt="Completed office interior: open oak-and-steel staircase, grey stone floor" fetchpriority="high"></button></figure>
+
+  <section class="project" id="office">
+    <div class="stampbar">
+      <div><small>Object</small><h2>Office, English Embankment</h2></div>
+      <div><small>City</small><b>Saint Petersburg</b></div>
+      <div><small>Stages</small><b>3D · working drawings</b></div>
+      <div><small>Status</small><b>Built, photographed 2022</b></div>
+    </div>
+    <p class="intro">Two-level office with an open staircase, black steel-framed glass partitions and suspended linear lighting. Below, the 3D visualizations next to photos of the finished rooms.</p>
+    <h3>3D visualization and the built room</h3>
+    <div class="pairs" data-pairs="office"></div>
+    <h3>Photos of the completed office</h3>
+    <div class="grid" data-grid="office"></div>
+    <h3>Working drawings</h3>
+    <div class="sheets" data-sheets="officeDwg"></div>
+  </section>
+
+  <section class="project" id="cottage">
+    <div class="stampbar">
+      <div><small>Object</small><h2>Two-storey cottage, Vartemyagi</h2></div>
+      <div><small>Area</small><b>200 m²</b></div>
+      <div><small>Stages</small><b>Full design · supervision</b></div>
+      <div><small>Status</small><b>Built, turnkey</b></div>
+    </div>
+    <p class="intro">Country house in Provence style: painted furniture, striped and floral wallpapers, tiled kitchen floor, attic bedrooms under skylights. Renovated turnkey with partner contractors.</p>
+    <h3>3D visualization and the built room</h3>
+    <div class="pairs" data-pairs="cottage"></div>
+    <h3>Photos of the completed house</h3>
+    <div class="grid" data-grid="cottage"></div>
+    <h3>Working drawings</h3>
+    <div class="sheets" data-sheets="cottageDwg"></div>
+  </section>
+
+  <section class="project" id="renders">
+    <div class="stampbar">
+      <div><small>Section</small><h2>3D visualizations</h2></div>
+      <div><small>Objects</small><b>Apartments, offices, shop</b></div>
+      <div><small>Software</small><b>3ds Max, Corona, V-Ray</b></div>
+      <div><small>Images</small><b data-count="renders"></b></div>
+    </div>
+    <p class="intro">A selection of photorealistic visualizations from other projects of the studio.</p>
+    <h3>Selected renders</h3>
+    <div class="grid" data-grid="renders"></div>
+  </section>
+
+  <footer id="contact">
+    <div class="name">Anastasia Parvitskaya</div>
+    <div class="mail"><span id="email">Parnast134@gmail.com</span><button class="btn" type="button" id="copy">Copy email</button></div>
+  </footer>
+</div>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Image viewer">
+  <header><span id="lbCap"></span><button class="close" type="button" id="lbClose">Close</button></header>
+  <div class="stage">
+    <button class="nav prev" type="button" id="lbPrev" aria-label="Previous">‹</button>
+    <img id="lbImg" alt="">
+    <button class="nav next" type="button" id="lbNext" aria-label="Next">›</button>
+  </div>
+  <div class="foot"><span id="lbNum"></span><span>← → to browse · Esc to close</span></div>
+</div>
+
+<script>
+const O='office/20220614-792A', C='cottage/IMG_';
+const sets={
+  cover:[{f:O+'1252-HDR',c:'Office, English Embankment'}],
+  office:[
+    {f:O+'1173-HDR',w:533,h:800},{f:O+'1192-HDR'},{f:O+'1187-HDR'},{f:O+'1237-HDR'},
+    {f:O+'1281-HDR',w:533,h:800},{f:O+'1272-HDR'},{f:O+'1197-HDR'}],
+  cottage:[
+    {f:C+'2630'},{f:C+'2652',w:533,h:800},{f:C+'2681'},{f:C+'2706'},{f:C+'2748'},{f:C+'2410'},
+    {f:C+'2345',w:533,h:800},{f:C+'2478'},{f:C+'2568',w:533,h:800},{f:C+'2530'},{f:C+'2771',w:533,h:800}],
+  renders:[
+    {f:'72_Ps',w:800,h:586,c:'Living room with kitchen'},{f:'8_Ps',h:600,c:'Record shop'},{f:'33_Ps',w:800,h:533,c:'Loft living room'},
+    {f:'53_Ps',h:600,c:'Living room'},{f:'52_Ps',h:600,c:'Kitchen and dining'},{f:'52_Ps_3',w:800,h:533,c:'Bedroom'},
+    {f:'21_Ps_2',w:800,h:620,c:'Bedroom'},{f:'13_Ps',w:800,h:800,c:'Living room'},{f:'57_Ps',h:600,c:'Living room'},
+    {f:'11_Ps',w:800,h:533,c:'Study'},{f:'40_Ps',w:800,h:628,c:'Office, 3D plan'},{f:'78_Ps',w:800,h:735,c:'Apartment, 3D plan'},
+    {f:'10_Ps',w:784,h:800,c:'Bathroom'},{f:'40_Ps_2',w:800,h:607,c:'Bathroom'}],
+  officeDwg:[{f:'Plan_1',c:'Furniture layout, ground floor · 1:50'},{f:'Plan_2',c:'Lighting plan, ground floor · 1:50'}],
+  cottageDwg:[{f:'Plan_3',c:'Furniture layout, ground floor · 1:100'},{f:'Plan_4',c:'Wall elevations, bathroom, first floor · 1:50'}],
+};
+const pairs={
+  office:[
+    {r:'25_Ps_2',p:O+'1252-HDR',c:'Entrance hall with the staircase'},
+    {r:'48_Ps',p:O+'1182-HDR',c:'Kitchen niche behind the glass partition'},
+    {r:'20_Ps_2',p:O+'1275-HDR',c:'Glass-walled room under the ceiling beams'}],
+  cottage:[{r:'9_Ps',p:C+'2775',c:'Dining room on the glazed veranda'}],
+};
+// pair images join a lightbox set per project, render then photo
+for(const k in pairs){sets[k+'Pairs']=pairs[k].flatMap(x=>[{f:x.r,c:x.c+' · 3D'},{f:x.p,c:x.c+' · built'}])}
+
+const W=(x)=>x.w||800, H=(x)=>x.h||533;
+const el=(t,a={},kids=[])=>{const e=document.createElement(t);for(const k in a){k in e&&k!=='list'?e[k]=a[k]:e.setAttribute(k,a[k])}kids.forEach(c=>e.append(c));return e};
+const thumb=(x,alt)=>el('img',{src:'img/thumb/'+x.f+'.webp',alt,loading:'lazy',decoding:'async',width:W(x),height:H(x)});
+const opener=(set,i,label)=>{const b=el('button',{type:'button'});b.dataset.set=set;b.dataset.i=i;b.setAttribute('aria-label','Open '+label);return b};
+
+document.querySelectorAll('[data-grid]').forEach(g=>{
+  const k=g.dataset.grid;
+  sets[k].forEach((x,i)=>{
+    const alt=x.c||(k==='office'?'Completed office interior':'Completed cottage interior');
+    const b=opener(k,i,alt);b.append(thumb(x,alt));if(x.c)b.append(el('span',{className:'cap',textContent:x.c}));g.append(b)});
+});
+document.querySelectorAll('[data-pairs]').forEach(g=>{
+  const k=g.dataset.pairs;
+  pairs[k].forEach((x,i)=>{
+    const row=el('div',{className:'pair'});
+    [[x.r,'3D visualization','',2*i],[x.p,'Built','built',2*i+1]].forEach(([f,t,cls,idx])=>{
+      const b=opener(k+'Pairs',idx,x.c+', '+t);b.append(el('img',{src:'img/thumb/'+f+'.webp',alt:x.c+', '+t,loading:'lazy'}));
+      row.append(el('figure',{},[b,el('span',{className:'tag '+cls,textContent:t})]))});
+    row.append(el('figcaption',{textContent:x.c}));g.append(row)});
+});
+document.querySelectorAll('[data-sheets]').forEach(g=>{
+  const k=g.dataset.sheets;
+  sets[k].forEach((x,i)=>{const b=opener(k,i,x.c);b.append(el('img',{src:'img/thumb/'+x.f+'.webp',alt:x.c,loading:'lazy'}));
+    g.append(el('figure',{},[b,el('figcaption',{textContent:x.c})]))});
+});
+document.querySelector('[data-count="renders"]').textContent=sets.renders.length;
+
+// lightbox
+const lb=document.getElementById('lb'),img=document.getElementById('lbImg'),cap=document.getElementById('lbCap'),num=document.getElementById('lbNum');
+let cur=null,idx=0,last=null;
+const titles={office:'Office · completed',cottage:'Cottage · completed',renders:'3D visualization',officeDwg:'Office · drawing',cottageDwg:'Cottage · drawing',cover:''};
+function show(){const x=sets[cur][idx];img.src='img/full/'+x.f+'.webp';img.alt=x.c||titles[cur]||'';
+  cap.textContent=x.c||titles[cur]||'';num.textContent=(idx+1)+' / '+sets[cur].length;
+  const n=sets[cur][(idx+1)%sets[cur].length];new Image().src='img/full/'+n.f+'.webp';
+  const one=sets[cur].length<2;document.getElementById('lbPrev').hidden=one;document.getElementById('lbNext').hidden=one}
+function open(set,i,from){cur=set;idx=i;last=from;show();lb.hidden=false;document.body.style.overflow='hidden';document.getElementById('lbClose').focus()}
+function close(){lb.hidden=true;img.removeAttribute('src');document.body.style.overflow='';last&&last.focus()}
+const step=d=>{idx=(idx+d+sets[cur].length)%sets[cur].length;show()};
+document.addEventListener('click',e=>{const b=e.target.closest('button[data-set]');if(b)open(b.dataset.set,+b.dataset.i,b)});
+document.getElementById('lbClose').onclick=close;
+document.getElementById('lbPrev').onclick=()=>step(-1);
+document.getElementById('lbNext').onclick=()=>step(1);
+lb.addEventListener('click',e=>{if(e.target===lb||e.target.classList.contains('stage'))close()});
+document.addEventListener('keydown',e=>{if(lb.hidden)return;if(e.key==='Escape')close();if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1)});
+let sx=null;lb.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
+lb.addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)step(dx<0?1:-1);sx=null});
+
+document.getElementById('copy').onclick=async()=>{const b=document.getElementById('copy');
+  try{await navigator.clipboard.writeText('Parnast134@gmail.com');b.textContent='Copied'}
+  catch(_){const r=document.createRange();r.selectNodeContents(document.getElementById('email'));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected'}
+  setTimeout(()=>b.textContent='Copy email',1800)};
+</script>
+</body>
+</html>
