@@ -60,6 +60,20 @@ a{color:inherit}
 @media (max-width:640px){.cover img{aspect-ratio:4/3}}
 
 /* project */
+.services{padding-block:clamp(48px,8vw,96px) 0}
+.services h2{font-family:var(--f-display);font-stretch:112%;font-weight:700;font-size:clamp(26px,3.4vw,40px);letter-spacing:-.01em;margin:0 0 20px}
+.svc-main{border:1.5px solid var(--stamp);padding:clamp(18px,3vw,32px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:clamp(16px,3vw,40px);align-items:start}
+.svc-main small{font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:var(--stamp)}
+.svc-main h3,.svc h3{all:unset;display:block;font-family:var(--f-display);font-weight:680;font-stretch:104%;color:var(--ink)}
+.svc-main h3{font-size:clamp(22px,2.6vw,30px);line-height:1.12;margin-top:6px;text-wrap:balance}
+.svc-main p{margin:0;font-size:17px;max-width:56ch}
+.svc-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin-top:6px;border-top:1px solid var(--rule)}
+.svc{padding:20px 20px 20px 0;border-bottom:1px solid var(--rule);min-width:0}
+.svc:nth-child(2n){padding-left:20px;border-left:1px solid var(--rule)}
+.svc h3{font-size:19px;margin-bottom:6px}
+.svc h3::after,.svc-main h3::after{content:none}
+.svc p{margin:0;color:var(--muted);max-width:52ch}
+@media (max-width:700px){.svc-main{grid-template-columns:1fr}.svc-list{grid-template-columns:1fr}.svc:nth-child(2n){padding-left:0;border-left:0}}
 .project{padding-block:clamp(48px,8vw,96px) 0}
 .stampbar{display:grid;grid-template-columns:minmax(0,2.2fr) repeat(3,minmax(0,1fr));border:1.5px solid var(--stamp);color:var(--stamp);
   font-family:var(--f-mono);font-size:12px}
@@ -127,7 +141,7 @@ footer .name{font-family:var(--f-display);font-stretch:118%;font-weight:720;font
   <header class="top">
     <span>A. Parvitskaya · Interiors</span>
     <nav aria-label="Sections">
-      <a href="#office">Office</a><a href="#cottage">Cottage</a><a href="#renders">3D visualizations</a><a href="#contact">Contact</a>
+      <a href="#services">Services</a><a href="#office">Office</a><a href="#cottage">Cottage</a><a href="#renders">3D visualizations</a><a href="#contact">Contact</a>
     </nav>
   </header>
 
@@ -146,6 +160,20 @@ footer .name{font-family:var(--f-display);font-stretch:118%;font-weight:720;font
   </section>
 
   <figure class="cover"><button type="button" data-set="cover" data-i="0" aria-label="Open photo"><img src="img/full/office/20220614-792A1252-HDR.webp" alt="Completed office interior: open oak-and-steel staircase, grey stone floor" fetchpriority="high"></button></figure>
+
+  <section class="services" id="services">
+    <h2>Services</h2>
+    <div class="svc-main">
+      <div><small>Main service</small><h3>From AI images to a buildable project</h3></div>
+      <p>Send me interior images made with AI and a floor plan of your space. I turn them into an accurate 3D visualization of your actual room and a set of construction drawings your contractor can build from.</p>
+    </div>
+    <div class="svc-list">
+      <div class="svc"><h3>3D visualization from sketches</h3><p>Photorealistic 3D views of every room from your sketches or references.</p></div>
+      <div class="svc"><h3>Construction drawings from 3D</h3><p>A full set of working drawings from an existing visualization or 3D model: plans, electrical and lighting, plumbing, wall elevations, finish schedule.</p></div>
+      <div class="svc"><h3>Replanning and furniture layouts</h3><p>Replanning options for an apartment or a house, and furniture layout plans.</p></div>
+      <div class="svc"><h3>Ergonomics and comfort</h3><p>Advice on making a space convenient and comfortable to live and work in.</p></div>
+    </div>
+  </section>
 
   <section class="project" id="office">
     <div class="stampbar">
