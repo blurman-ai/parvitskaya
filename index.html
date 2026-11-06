@@ -33,7 +33,7 @@ a{color:inherit}
 /* header */
 .top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:20px;
   border-bottom:1px solid var(--rule);font-family:var(--f-mono);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase}
-.top nav{display:flex;gap:18px;flex-wrap:wrap}
+.top nav{display:flex;gap:6px 18px;flex-wrap:wrap}
 .top nav a{text-decoration:none;color:var(--muted)} .top nav a:hover{color:var(--ink)}
 
 .hero{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);padding-block:clamp(36px,7vw,84px) clamp(28px,5vw,56px);align-items:end}
@@ -42,6 +42,10 @@ a{color:inherit}
 .hero .role{font-family:var(--f-display);font-stretch:80%;font-weight:420;font-size:clamp(20px,2.4vw,28px);margin:18px 0 0;color:var(--muted)}
 .hero p{margin:0;max-width:52ch}
 .hero .lead{display:flex;flex-direction:column;gap:18px}
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr;align-items:start}
+  .hero h1{font-size:min(12.5vw,80px);font-stretch:108%}
+}
 .tools{font-family:var(--f-mono);font-size:12.5px;color:var(--muted);letter-spacing:.02em}
 .note{border-left:2px solid var(--stamp);padding-left:12px;color:var(--ink);font-weight:500}
 .mail{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-family:var(--f-mono);font-size:14px}
