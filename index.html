@@ -86,10 +86,11 @@ h3::after{content:"";flex:1;height:1px;background:var(--rule)}
 .pair figcaption{grid-column:1/-1;font-size:14px;color:var(--muted);margin-top:4px}
 @media (max-width:560px){.pair{grid-template-columns:1fr}}
 
-.grid{columns:3 280px;column-gap:6px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+@media (max-width:640px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .grid button,.pair button,.sheets button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;color:inherit;text-align:left}
-.grid button{break-inside:avoid;margin-bottom:6px;position:relative}
-.grid img{width:100%;height:auto;display:block;background:var(--rule)}
+.grid button{position:relative;min-width:0}
+.grid img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block;background:var(--rule)}
 .grid .cap{position:absolute;left:0;bottom:0;background:var(--sheet);font-family:var(--f-mono);font-size:11px;padding:4px 8px;
   text-transform:uppercase;letter-spacing:.06em;opacity:0;transition:opacity .2s}
 .grid button:hover .cap,.grid button:focus-visible .cap{opacity:1}
@@ -211,16 +212,16 @@ const sets={
   cover:[{f:O+'1252-HDR',c:'Office, English Embankment'}],
   office:[
     {f:O+'1173-HDR',w:533,h:800},{f:O+'1192-HDR'},{f:O+'1187-HDR'},{f:O+'1237-HDR'},
-    {f:O+'1281-HDR',w:533,h:800},{f:O+'1272-HDR'},{f:O+'1197-HDR'}],
+    {f:O+'1281-HDR',w:533,h:800},{f:O+'1272-HDR'}],
   cottage:[
-    {f:C+'2630'},{f:C+'2652',w:533,h:800},{f:C+'2681'},{f:C+'2706'},{f:C+'2748'},{f:C+'2410'},
+    {f:C+'2630'},{f:C+'2652',w:533,h:800},{f:C+'2681'},{f:C+'2615'},{f:C+'2706'},{f:C+'2748'},{f:C+'2410'},
     {f:C+'2345',w:533,h:800},{f:C+'2478'},{f:C+'2568',w:533,h:800},{f:C+'2530'},{f:C+'2771',w:533,h:800}],
   renders:[
     {f:'72_Ps',w:800,h:586,c:'Living room with kitchen'},{f:'8_Ps',h:600,c:'Record shop'},{f:'33_Ps',w:800,h:533,c:'Loft living room'},
     {f:'53_Ps',h:600,c:'Living room'},{f:'52_Ps',h:600,c:'Kitchen and dining'},{f:'52_Ps_3',w:800,h:533,c:'Bedroom'},
     {f:'21_Ps_2',w:800,h:620,c:'Bedroom'},{f:'13_Ps',w:800,h:800,c:'Living room'},{f:'57_Ps',h:600,c:'Living room'},
-    {f:'11_Ps',w:800,h:533,c:'Study'},{f:'40_Ps',w:800,h:628,c:'Office, 3D plan'},{f:'78_Ps',w:800,h:735,c:'Apartment, 3D plan'},
-    {f:'10_Ps',w:784,h:800,c:'Bathroom'},{f:'40_Ps_2',w:800,h:607,c:'Bathroom'}],
+    {f:'40_Ps',w:800,h:628,c:'Office, 3D plan'},{f:'78_Ps',w:800,h:735,c:'Apartment, 3D plan'},
+    {f:'10_Ps',w:784,h:800,c:'Bathroom'}],
   officeDwg:[{f:'Plan_1',c:'Furniture layout, ground floor · 1:50'},{f:'Plan_2',c:'Lighting plan, ground floor · 1:50'}],
   cottageDwg:[{f:'Plan_3',c:'Furniture layout, ground floor · 1:100'},{f:'Plan_4',c:'Wall elevations, bathroom, first floor · 1:50'}],
 };
