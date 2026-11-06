@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -7,7 +7,7 @@
 <meta name="description" content="Interior designer and 3D visualizer. Completed projects, 3D visualizations and working drawings.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&family=IBM+Plex+Mono:wght@400;500&family=Onest:wght@400..800&family=Heebo:wght@400..800&display=swap">
 <style>
 html{-webkit-text-size-adjust:100%}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
 /* Layout: a drawing sheet. Each project opens with a title block (object, scale of work, status), then 3D-vs-built pairs, then a photo set. */
@@ -19,6 +19,9 @@ html{-webkit-text-size-adjust:100%}:root{padding-top:env(safe-area-inset-top,0px
   --f-body:"Archivo",system-ui,sans-serif;
   --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
 }
+:root[lang="ru"]{--f-display:"Onest",system-ui,sans-serif;--f-body:"Onest",system-ui,sans-serif}
+:root[lang="he"]{--f-display:"Heebo",system-ui,sans-serif;--f-body:"Heebo",system-ui,sans-serif;--f-mono:"Heebo",system-ui,sans-serif}
+:root[lang="he"] *{letter-spacing:normal!important}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --paper:#121317; --sheet:#1a1b20; --ink:#e9eaee; --muted:#9a9ca6; --rule:#30323a; --stamp:#9ea2ff; color-scheme:dark}}
 :root[data-theme="dark"]{--paper:#121317; --sheet:#1a1b20; --ink:#e9eaee; --muted:#9a9ca6; --rule:#30323a; --stamp:#9ea2ff; color-scheme:dark}
@@ -33,12 +36,18 @@ a{color:inherit}
 /* header */
 .top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:20px;
   border-bottom:1px solid var(--rule);font-family:var(--f-mono);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase}
+.top .right{display:flex;align-items:center;gap:10px 24px;flex-wrap:wrap}
 .top nav{display:flex;gap:6px 18px;flex-wrap:wrap}
 .top nav a{text-decoration:none;color:var(--muted)} .top nav a:hover{color:var(--ink)}
+.langs{display:flex;border:1px solid var(--rule)}
+.langs button{font:inherit;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;letter-spacing:.04em;background:none;border:0;color:var(--muted);padding:4px 9px;cursor:pointer}
+.langs button+button{border-inline-start:1px solid var(--rule)}
+.langs button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
 
 .hero{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);padding-block:clamp(36px,7vw,84px) clamp(28px,5vw,56px);align-items:end}
 .hero h1{font-family:var(--f-display);font-stretch:118%;font-weight:760;font-size:clamp(40px,7.4vw,96px);line-height:.92;
   letter-spacing:-.025em;margin:0;text-wrap:balance}
+:root[lang="he"] .hero h1{line-height:1.05}
 .hero .role{font-family:var(--f-display);font-stretch:80%;font-weight:420;font-size:clamp(20px,2.4vw,28px);margin:18px 0 0;color:var(--muted)}
 .hero p{margin:0;max-width:52ch}
 .hero .lead{display:flex;flex-direction:column;gap:18px}
@@ -47,9 +56,9 @@ a{color:inherit}
   .hero h1{font-size:min(12.5vw,80px);font-stretch:108%}
 }
 .tools{font-family:var(--f-mono);font-size:12.5px;color:var(--muted);letter-spacing:.02em}
-.note{border-left:2px solid var(--stamp);padding-left:12px;color:var(--ink);font-weight:500}
+.note{border-inline-start:2px solid var(--stamp);padding-inline-start:12px;color:var(--ink);font-weight:500}
 .mail{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-family:var(--f-mono);font-size:14px}
-.mail .addr{color:var(--ink);text-underline-offset:3px}
+.mail .addr{color:var(--ink);text-underline-offset:3px;font-family:"IBM Plex Mono",ui-monospace,monospace;direction:ltr;unicode-bidi:isolate}
 .btn{font:inherit;font-size:12px;text-transform:uppercase;letter-spacing:.06em;border:1px solid var(--ink);background:transparent;color:var(--ink);
   padding:6px 12px;cursor:pointer;border-radius:0}
 .btn:hover{background:var(--ink);color:var(--paper)}
@@ -59,7 +68,7 @@ a{color:inherit}
 .cover img{width:100%;aspect-ratio:21/9;object-fit:cover;display:block}
 @media (max-width:640px){.cover img{aspect-ratio:4/3}}
 
-/* project */
+/* services */
 .services{padding-block:clamp(48px,8vw,96px) 0}
 .services h2{font-family:var(--f-display);font-stretch:112%;font-weight:700;font-size:clamp(26px,3.4vw,40px);letter-spacing:-.01em;margin:0 0 20px}
 .svc-main{border:1.5px solid var(--stamp);padding:clamp(18px,3vw,32px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:clamp(16px,3vw,40px);align-items:start}
@@ -68,22 +77,24 @@ a{color:inherit}
 .svc-main h3{font-size:clamp(22px,2.6vw,30px);line-height:1.12;margin-top:6px;text-wrap:balance}
 .svc-main p{margin:0;font-size:17px;max-width:56ch}
 .svc-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin-top:6px;border-top:1px solid var(--rule)}
-.svc{padding:20px 20px 20px 0;border-bottom:1px solid var(--rule);min-width:0}
-.svc:nth-child(2n){padding-left:20px;border-left:1px solid var(--rule)}
+.svc{padding-block:20px;padding-inline:0 20px;border-bottom:1px solid var(--rule);min-width:0}
+.svc:nth-child(2n){padding-inline-start:20px;border-inline-start:1px solid var(--rule)}
 .svc h3{font-size:19px;margin-bottom:6px}
 .svc h3::after,.svc-main h3::after{content:none}
 .svc p{margin:0;color:var(--muted);max-width:52ch}
-@media (max-width:700px){.svc-main{grid-template-columns:1fr}.svc-list{grid-template-columns:1fr}.svc:nth-child(2n){padding-left:0;border-left:0}}
+@media (max-width:700px){.svc-main{grid-template-columns:1fr}.svc-list{grid-template-columns:1fr}.svc:nth-child(2n){padding-inline-start:0;border-inline-start:0}}
+
+/* project */
 .project{padding-block:clamp(48px,8vw,96px) 0}
 .stampbar{display:grid;grid-template-columns:minmax(0,2.2fr) repeat(3,minmax(0,1fr));border:1.5px solid var(--stamp);color:var(--stamp);
   font-family:var(--f-mono);font-size:12px}
-.stampbar>div{padding:10px 14px;border-left:1px solid var(--stamp);min-width:0}
-.stampbar>div:first-child{border-left:0}
+.stampbar>div{padding:10px 14px;border-inline-start:1px solid var(--stamp);min-width:0}
+.stampbar>div:first-child{border-inline-start:0}
 .stampbar small{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;opacity:.75}
 .stampbar b{font-weight:500;font-size:13px;color:var(--ink)}
 .stampbar h2{font-family:var(--f-display);font-stretch:112%;font-weight:700;font-size:clamp(22px,3vw,34px);line-height:1.05;margin:2px 0 0;color:var(--ink);letter-spacing:-.01em;text-wrap:balance}
 @media (max-width:760px){.stampbar{grid-template-columns:1fr 1fr}.stampbar>div:first-child{grid-column:1/-1}
-  .stampbar>div:nth-child(2){border-left:0}.stampbar>div:nth-child(n+2){border-top:1px solid var(--stamp)}}
+  .stampbar>div:nth-child(2){border-inline-start:0}.stampbar>div:nth-child(n+2){border-top:1px solid var(--stamp)}}
 .intro{max-width:62ch;margin:22px 0 0}
 
 h3{font-family:var(--f-mono);font-weight:500;font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);
@@ -94,7 +105,7 @@ h3::after{content:"";flex:1;height:1px;background:var(--rule)}
 .pair{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .pair figure{margin:0;position:relative;min-width:0}
 .pair img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
-.tag{position:absolute;left:0;top:0;background:var(--sheet);color:var(--ink);font-family:var(--f-mono);font-size:11px;
+.tag{position:absolute;inset-inline-start:0;top:0;background:var(--sheet);color:var(--ink);font-family:var(--f-mono);font-size:11px;
   text-transform:uppercase;letter-spacing:.08em;padding:5px 9px}
 .tag.built{background:var(--stamp);color:var(--sheet)}
 .pair figcaption{grid-column:1/-1;font-size:14px;color:var(--muted);margin-top:4px}
@@ -102,10 +113,10 @@ h3::after{content:"";flex:1;height:1px;background:var(--rule)}
 
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
 @media (max-width:640px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.grid button,.pair button,.sheets button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;color:inherit;text-align:left}
+.grid button,.pair button,.sheets button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;color:inherit;text-align:start}
 .grid button{position:relative;min-width:0}
 .grid img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block;background:var(--rule)}
-.grid .cap{position:absolute;left:0;bottom:0;background:var(--sheet);font-family:var(--f-mono);font-size:11px;padding:4px 8px;
+.grid .cap{position:absolute;inset-inline-start:0;bottom:0;background:var(--sheet);font-family:var(--f-mono);font-size:11px;padding:4px 8px;
   text-transform:uppercase;letter-spacing:.06em;opacity:0;transition:opacity .2s}
 .grid button:hover .cap,.grid button:focus-visible .cap{opacity:1}
 @media (hover:none){.grid .cap{opacity:1}}
@@ -129,7 +140,7 @@ footer .name{font-family:var(--f-display);font-stretch:118%;font-weight:720;font
 .lb img{max-width:100%;max-height:100%;object-fit:contain;display:block}
 .lb .nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:64px;border:0;background:rgba(255,255,255,.08);color:#fff;font-size:22px;cursor:pointer}
 .lb .nav:hover{background:rgba(255,255,255,.18)}
-.lb .prev{left:6px}.lb .next{right:6px}
+.lb .prev{inset-inline-start:6px}.lb .next{inset-inline-end:6px}
 .lb .close{border:1px solid rgba(255,255,255,.5);background:none;color:#fff;font:inherit;padding:6px 12px;cursor:pointer}
 @media (max-width:560px){.lb .stage{padding:0}.lb .nav{background:rgba(0,0,0,.35)}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -139,106 +150,198 @@ footer .name{font-family:var(--f-display);font-stretch:118%;font-weight:720;font
 
 <div class="wrap">
   <header class="top">
-    <span>A. Parvitskaya · Interiors</span>
-    <nav aria-label="Sections">
-      <a href="#services">Services</a><a href="#office">Office</a><a href="#cottage">Cottage</a><a href="#renders">3D visualizations</a><a href="#contact">Contact</a>
-    </nav>
+    <span data-t="brand">A. Parvitskaya · Interiors</span>
+    <div class="right">
+      <nav data-ta="navLabel" aria-label="Sections">
+        <a href="#services" data-t="navServices">Services</a><a href="#office" data-t="navOffice">Office</a><a href="#cottage" data-t="navCottage">Cottage</a><a href="#renders" data-t="navRenders">3D visualizations</a><a href="#contact" data-t="navContact">Contact</a>
+      </nav>
+      <div class="langs" role="group" aria-label="Language">
+        <button type="button" data-lang="en" lang="en" aria-pressed="true">EN</button><button type="button" data-lang="ru" lang="ru" aria-pressed="false">RU</button><button type="button" data-lang="he" lang="he" aria-pressed="false">HE</button>
+      </div>
+    </div>
   </header>
 
   <section class="hero">
     <div>
-      <h1>Anastasia Parvitskaya</h1>
-      <p class="role">Interior designer &amp; 3D visualizer</p>
+      <h1 data-t="name">Anastasia Parvitskaya</h1>
+      <p class="role" data-t="role">Interior designer &amp; 3D visualizer</p>
     </div>
     <div class="lead">
-      <p>More than 50 interior projects in Saint Petersburg: apartments, cottages, offices and a record shop. I take each project from the client brief and on-site measurement through space planning, 3D visualization of every room, a full set of working drawings, furniture and materials selection, and author's supervision during construction.</p>
-      <p class="note">Selected work.</p>
+      <p data-t="lead">More than 50 interior projects in Saint Petersburg: apartments, cottages, offices and a record shop. I take each project from the client brief and on-site measurement through space planning, 3D visualization of every room, a full set of working drawings, furniture and materials selection, and author's supervision during construction.</p>
+      <p class="note" data-t="selected">Selected work.</p>
       <p class="tools">3ds Max · Corona · V-Ray · SketchUp · AutoCAD · CorelDRAW · Photoshop</p>
-      <p class="tools">Haifa, Israel · working remotely</p>
-      <div class="mail"><a class="addr" href="mailto:Parnast134@gmail.com">Parnast134@gmail.com</a><button class="btn copy" type="button">Copy email</button></div>
+      <p class="tools" data-t="location">Haifa, Israel · working remotely</p>
+      <div class="mail"><a class="addr" href="mailto:Parnast134@gmail.com">Parnast134@gmail.com</a><button class="btn copy" type="button" data-t="copy">Copy email</button></div>
     </div>
   </section>
 
-  <figure class="cover"><button type="button" data-set="cover" data-i="0" aria-label="Open photo"><img src="img/full/office/20220614-792A1252-HDR.webp" alt="Completed office interior: open oak-and-steel staircase, grey stone floor" fetchpriority="high"></button></figure>
+  <figure class="cover"><button type="button" data-set="cover" data-i="0" data-ta="openPhoto" aria-label="Open photo"><img src="img/full/office/20220614-792A1252-HDR.webp" alt="" data-talt="coverAlt" fetchpriority="high"></button></figure>
 
   <section class="services" id="services">
-    <h2>Services</h2>
+    <h2 data-t="services">Services</h2>
     <div class="svc-main">
-      <div><small>Main service</small><h3>From AI images or Pinterest to a buildable project</h3></div>
-      <p>Send me interior images made with AI or saved from Pinterest, and a floor plan of your space. I turn them into an accurate 3D visualization of your actual room and a set of construction drawings your contractor can build from.</p>
+      <div><small data-t="mainService">Main service</small><h3 data-t="svcAiH">From AI images or Pinterest to a buildable project</h3></div>
+      <p data-t="svcAiP">Send me interior images made with AI or saved from Pinterest, and a floor plan of your space. I turn them into an accurate 3D visualization of your actual room and a set of construction drawings your contractor can build from.</p>
     </div>
     <div class="svc-list">
-      <div class="svc"><h3>3D visualization from sketches</h3><p>Photorealistic 3D views of every room from your sketches or references.</p></div>
-      <div class="svc"><h3>Construction drawings from 3D</h3><p>A full set of working drawings from an existing visualization or 3D model: plans, electrical and lighting, plumbing, wall elevations, finish schedule.</p></div>
-      <div class="svc"><h3>Replanning and furniture layouts</h3><p>Replanning options for an apartment or a house, and furniture layout plans.</p></div>
-      <div class="svc"><h3>Ergonomics and comfort</h3><p>Advice on making a space convenient and comfortable to live and work in.</p></div>
+      <div class="svc"><h3 data-t="svc1H">3D visualization from sketches</h3><p data-t="svc1P">Photorealistic 3D views of every room from your sketches or references.</p></div>
+      <div class="svc"><h3 data-t="svc2H">Construction drawings from 3D</h3><p data-t="svc2P">A full set of working drawings from an existing visualization or 3D model: plans, electrical and lighting, plumbing, wall elevations, finish schedule.</p></div>
+      <div class="svc"><h3 data-t="svc3H">Replanning and furniture layouts</h3><p data-t="svc3P">Replanning options for an apartment or a house, and furniture layout plans.</p></div>
+      <div class="svc"><h3 data-t="svc4H">Ergonomics and comfort</h3><p data-t="svc4P">Advice on making a space convenient and comfortable to live and work in.</p></div>
     </div>
   </section>
 
   <section class="project" id="office">
     <div class="stampbar">
-      <div><small>Object</small><h2>Office, English Embankment</h2></div>
-      <div><small>City</small><b>Saint Petersburg</b></div>
-      <div><small>Stages</small><b>3D · working drawings</b></div>
-      <div><small>Status</small><b>Built, photographed 2022</b></div>
+      <div><small data-t="lObject">Object</small><h2 data-t="officeName">Office, English Embankment</h2></div>
+      <div><small data-t="lCity">City</small><b data-t="spb">Saint Petersburg</b></div>
+      <div><small data-t="lStages">Stages</small><b data-t="officeStages">3D · working drawings</b></div>
+      <div><small data-t="lStatus">Status</small><b data-t="officeStatus">Built, photographed 2022</b></div>
     </div>
-    <p class="intro">Two-level office with an open staircase, black steel-framed glass partitions and suspended linear lighting. Below, the 3D visualizations next to photos of the finished rooms.</p>
-    <h3>3D visualization and the built room</h3>
+    <p class="intro" data-t="officeIntro">Two-level office with an open staircase, black steel-framed glass partitions and suspended linear lighting. Below, the 3D visualizations next to photos of the finished rooms.</p>
+    <h3 data-t="hPairs">3D visualization and the built room</h3>
     <div class="pairs" data-pairs="office"></div>
-    <h3>Photos of the completed office</h3>
+    <h3 data-t="hOfficePhotos">Photos of the completed office</h3>
     <div class="grid" data-grid="office"></div>
-    <h3>Working drawings</h3>
+    <h3 data-t="hDrawings">Working drawings</h3>
     <div class="sheets" data-sheets="officeDwg"></div>
   </section>
 
   <section class="project" id="cottage">
     <div class="stampbar">
-      <div><small>Object</small><h2>Two-storey cottage, Vartemyagi</h2></div>
-      <div><small>Area</small><b>200 m²</b></div>
-      <div><small>Stages</small><b>Full design · supervision</b></div>
-      <div><small>Status</small><b>Built, turnkey</b></div>
+      <div><small data-t="lObject">Object</small><h2 data-t="cottageName">Two-storey cottage, Vartemyagi</h2></div>
+      <div><small data-t="lArea">Area</small><b data-t="cottageArea">200 m²</b></div>
+      <div><small data-t="lStages">Stages</small><b data-t="cottageStages">Full design · supervision</b></div>
+      <div><small data-t="lStatus">Status</small><b data-t="cottageStatus">Built, turnkey</b></div>
     </div>
-    <p class="intro">Country house in Provence style: painted furniture, striped and floral wallpapers, tiled kitchen floor, attic bedrooms under skylights. Renovated turnkey with partner contractors.</p>
-    <h3>3D visualization and the built room</h3>
+    <p class="intro" data-t="cottageIntro">Country house in Provence style: painted furniture, striped and floral wallpapers, tiled kitchen floor, attic bedrooms under skylights. Renovated turnkey with partner contractors.</p>
+    <h3 data-t="hPairs">3D visualization and the built room</h3>
     <div class="pairs" data-pairs="cottage"></div>
-    <h3>Photos of the completed house</h3>
+    <h3 data-t="hCottagePhotos">Photos of the completed house</h3>
     <div class="grid" data-grid="cottage"></div>
-    <h3>Working drawings</h3>
+    <h3 data-t="hDrawings">Working drawings</h3>
     <div class="sheets" data-sheets="cottageDwg"></div>
   </section>
 
   <section class="project" id="renders">
     <div class="stampbar">
-      <div><small>Section</small><h2>3D visualizations</h2></div>
-      <div><small>Objects</small><b>Apartments, offices, shop</b></div>
-      <div><small>Software</small><b>3ds Max, Corona, V-Ray</b></div>
-      <div><small>Images</small><b data-count="renders"></b></div>
+      <div><small data-t="lSection">Section</small><h2 data-t="rendersName">3D visualizations</h2></div>
+      <div><small data-t="lObjects">Objects</small><b data-t="rendersObjects">Apartments, offices, shop</b></div>
+      <div><small data-t="lSoftware">Software</small><b>3ds Max, Corona, V-Ray</b></div>
+      <div><small data-t="lImages">Images</small><b data-count="renders"></b></div>
     </div>
-    <p class="intro">A selection of photorealistic visualizations from other projects of the studio.</p>
-    <h3>Selected renders</h3>
+    <p class="intro" data-t="rendersIntro">A selection of photorealistic visualizations from other projects of the studio.</p>
+    <h3 data-t="hRenders">Selected renders</h3>
     <div class="grid" data-grid="renders"></div>
   </section>
 
   <footer id="contact">
-    <div class="name">Anastasia Parvitskaya</div>
-    <div class="mail"><a class="addr" href="mailto:Parnast134@gmail.com">Parnast134@gmail.com</a><button class="btn copy" type="button">Copy email</button></div>
+    <div class="name" data-t="name">Anastasia Parvitskaya</div>
+    <div class="mail"><a class="addr" href="mailto:Parnast134@gmail.com">Parnast134@gmail.com</a><button class="btn copy" type="button" data-t="copy">Copy email</button></div>
   </footer>
 </div>
 
-<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Image viewer">
-  <header><span id="lbCap"></span><button class="close" type="button" id="lbClose">Close</button></header>
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" data-ta="viewer" aria-label="Image viewer">
+  <header><span id="lbCap"></span><button class="close" type="button" id="lbClose" data-t="close">Close</button></header>
   <div class="stage">
-    <button class="nav prev" type="button" id="lbPrev" aria-label="Previous">‹</button>
+    <button class="nav prev" type="button" id="lbPrev" data-ta="prev" aria-label="Previous">‹</button>
     <img id="lbImg" alt="">
-    <button class="nav next" type="button" id="lbNext" aria-label="Next">›</button>
+    <button class="nav next" type="button" id="lbNext" data-ta="next" aria-label="Next">›</button>
   </div>
-  <div class="foot"><span id="lbNum"></span><span>← → to browse · Esc to close</span></div>
+  <div class="foot"><span id="lbNum"></span><span data-t="hint">← → to browse · Esc to close</span></div>
 </div>
 
 <script>
+const T={
+en:{title:'Anastasia Parvitskaya',desc:'Interior designer and 3D visualizer. Completed projects, 3D visualizations and working drawings.',
+  brand:'A. Parvitskaya · Interiors',navLabel:'Sections',navServices:'Services',navOffice:'Office',navCottage:'Cottage',navRenders:'3D visualizations',navContact:'Contact',
+  name:'Anastasia Parvitskaya',role:'Interior designer & 3D visualizer',
+  lead:"More than 50 interior projects in Saint Petersburg: apartments, cottages, offices and a record shop. I take each project from the client brief and on-site measurement through space planning, 3D visualization of every room, a full set of working drawings, furniture and materials selection, and author's supervision during construction.",
+  selected:'Selected work.',location:'Haifa, Israel · working remotely',copy:'Copy email',copied:'Copied',selectedTxt:'Selected',
+  openPhoto:'Open photo',open:'Open',coverAlt:'Completed office interior: open oak-and-steel staircase, grey stone floor',
+  services:'Services',mainService:'Main service',svcAiH:'From AI images or Pinterest to a buildable project',
+  svcAiP:'Send me interior images made with AI or saved from Pinterest, and a floor plan of your space. I turn them into an accurate 3D visualization of your actual room and a set of construction drawings your contractor can build from.',
+  svc1H:'3D visualization from sketches',svc1P:'Photorealistic 3D views of every room from your sketches or references.',
+  svc2H:'Construction drawings from 3D',svc2P:'A full set of working drawings from an existing visualization or 3D model: plans, electrical and lighting, plumbing, wall elevations, finish schedule.',
+  svc3H:'Replanning and furniture layouts',svc3P:'Replanning options for an apartment or a house, and furniture layout plans.',
+  svc4H:'Ergonomics and comfort',svc4P:'Advice on making a space convenient and comfortable to live and work in.',
+  lObject:'Object',lCity:'City',lStages:'Stages',lStatus:'Status',lArea:'Area',lSection:'Section',lObjects:'Objects',lSoftware:'Software',lImages:'Images',
+  officeName:'Office, English Embankment',spb:'Saint Petersburg',officeStages:'3D · working drawings',officeStatus:'Built, photographed 2022',
+  officeIntro:'Two-level office with an open staircase, black steel-framed glass partitions and suspended linear lighting. Below, the 3D visualizations next to photos of the finished rooms.',
+  hPairs:'3D visualization and the built room',hOfficePhotos:'Photos of the completed office',hDrawings:'Working drawings',hCottagePhotos:'Photos of the completed house',hRenders:'Selected renders',
+  cottageName:'Two-storey cottage, Vartemyagi',cottageArea:'200 m²',cottageStages:'Full design · supervision',cottageStatus:'Built, turnkey',
+  cottageIntro:'Country house in Provence style: painted furniture, striped and floral wallpapers, tiled kitchen floor, attic bedrooms under skylights. Renovated turnkey with partner contractors.',
+  rendersName:'3D visualizations',rendersObjects:'Apartments, offices, shop',rendersIntro:'A selection of photorealistic visualizations from other projects of the studio.',
+  close:'Close',hint:'← → to browse · Esc to close',viewer:'Image viewer',prev:'Previous',next:'Next',
+  tag3d:'3D visualization',tagBuilt:'Built',altOffice:'Completed office interior',altCottage:'Completed cottage interior',
+  tOffice:'Office · completed',tCottage:'Cottage · completed',tRenders:'3D visualization',tOfficeDwg:'Office · drawing',tCottageDwg:'Cottage · drawing',
+  c_livingKitchen:'Living room with kitchen',c_shop:'Record shop',c_loft:'Loft living room',c_living:'Living room',c_kitchenDining:'Kitchen and dining',c_bedroom:'Bedroom',
+  c_office3d:'Office, 3D plan',c_apt3d:'Apartment, 3D plan',c_bathroom:'Bathroom',
+  d_officeFurn:'Furniture layout, ground floor · 1:50',d_officeLight:'Lighting plan, ground floor · 1:50',d_cottageFurn:'Furniture layout, ground floor · 1:100',d_cottageBath:'Wall elevations, bathroom, first floor · 1:50',
+  p_hall:'Entrance hall with the staircase',p_kitchen:'Kitchen niche behind the glass partition',p_glass:'Glass-walled room under the ceiling beams',p_veranda:'Dining room on the glazed veranda'},
+ru:{title:'Анастасия Парвицкая',desc:'Дизайнер интерьера и 3D‑визуализатор. Реализованные проекты, 3D‑визуализации и рабочие чертежи.',
+  brand:'А. Парвицкая · Интерьеры',navLabel:'Разделы',navServices:'Услуги',navOffice:'Офис',navCottage:'Коттедж',navRenders:'3D‑визуализации',navContact:'Контакты',
+  name:'Анастасия Парвицкая',role:'Дизайнер интерьера и 3D‑визуализатор',
+  lead:'Более 50 интерьерных проектов в Санкт-Петербурге: квартиры, коттеджи, офисы и магазин пластинок. Веду каждый проект от брифа и обмеров через планировку, 3D‑визуализацию каждой комнаты, полный комплект рабочих чертежей, подбор мебели и материалов до авторского надзора на стройке.',
+  selected:'Избранные работы.',location:'Хайфа, Израиль · работаю удалённо',copy:'Скопировать почту',copied:'Скопировано',selectedTxt:'Выделено',
+  openPhoto:'Открыть фото',open:'Открыть',coverAlt:'Готовый интерьер офиса: открытая лестница из дуба и стали, пол из серого камня',
+  services:'Услуги',mainService:'Главная услуга',svcAiH:'От картинок ИИ или Pinterest до проекта, по которому можно строить',
+  svcAiP:'Пришлите картинки интерьера, созданные ИИ или сохранённые в Pinterest, и план помещения. Я сделаю по ним точную 3D‑визуализацию вашей комнаты и комплект строительных чертежей, по которым подрядчик сможет работать.',
+  svc1H:'3D‑визуализация по эскизам',svc1P:'Фотореалистичные 3D‑виды каждой комнаты по вашим эскизам или референсам.',
+  svc2H:'Строительные чертежи по 3D',svc2P:'Полный комплект рабочих чертежей по готовой визуализации или 3D‑модели: планы, электрика и освещение, сантехника, развёртки стен, ведомость отделки.',
+  svc3H:'Перепланировка и расстановка мебели',svc3P:'Варианты перепланировки квартиры или дома и планы расстановки мебели.',
+  svc4H:'Эргономика и комфорт',svc4P:'Консультации о том, как сделать пространство удобным и комфортным для жизни и работы.',
+  lObject:'Объект',lCity:'Город',lStages:'Стадии',lStatus:'Статус',lArea:'Площадь',lSection:'Раздел',lObjects:'Объекты',lSoftware:'Программы',lImages:'Изображений',
+  officeName:'Офис на Английской набережной',spb:'Санкт-Петербург',officeStages:'3D · рабочие чертежи',officeStatus:'Реализован, фото 2022',
+  officeIntro:'Двухуровневый офис с открытой лестницей, стеклянными перегородками в чёрных стальных рамах и подвесными линейными светильниками. Ниже 3D‑визуализации рядом с фотографиями готовых помещений.',
+  hPairs:'3D‑визуализация и готовое помещение',hOfficePhotos:'Фото готового офиса',hDrawings:'Рабочие чертежи',hCottagePhotos:'Фото готового дома',hRenders:'Избранные рендеры',
+  cottageName:'Двухэтажный коттедж, Вартемяги',cottageArea:'200 м²',cottageStages:'Полный проект · авторский надзор',cottageStatus:'Реализован под ключ',
+  cottageIntro:'Загородный дом в стиле прованс: расписная мебель, обои в полоску и в цветочек, плиточный пол на кухне, мансардные спальни с окнами в крыше. Ремонт под ключ с партнёрскими подрядчиками.',
+  rendersName:'3D‑визуализации',rendersObjects:'Квартиры, офисы, магазин',rendersIntro:'Подборка фотореалистичных визуализаций из других проектов студии.',
+  close:'Закрыть',hint:'← → листать · Esc закрыть',viewer:'Просмотр изображений',prev:'Назад',next:'Вперёд',
+  tag3d:'3D‑визуализация',tagBuilt:'Реализовано',altOffice:'Интерьер готового офиса',altCottage:'Интерьер готового коттеджа',
+  tOffice:'Офис · реализация',tCottage:'Коттедж · реализация',tRenders:'3D‑визуализация',tOfficeDwg:'Офис · чертёж',tCottageDwg:'Коттедж · чертёж',
+  c_livingKitchen:'Гостиная с кухней',c_shop:'Магазин пластинок',c_loft:'Гостиная в стиле лофт',c_living:'Гостиная',c_kitchenDining:'Кухня-столовая',c_bedroom:'Спальня',
+  c_office3d:'Офис, 3D‑план',c_apt3d:'Квартира, 3D‑план',c_bathroom:'Ванная',
+  d_officeFurn:'План расстановки мебели, 1 этаж · 1:50',d_officeLight:'План освещения, 1 этаж · 1:50',d_cottageFurn:'План расстановки мебели, 1 этаж · 1:100',d_cottageBath:'Развёртки стен, санузел, 2 этаж · 1:50',
+  p_hall:'Холл с лестницей',p_kitchen:'Кухонная ниша за стеклянной перегородкой',p_glass:'Стеклянный кабинет под балками потолка',p_veranda:'Столовая на застеклённой веранде'},
+he:{title:'אנסטסיה פרביצקיה',desc:'מעצבת פנים ומומחית להדמיות תלת-ממד. פרויקטים שבוצעו, הדמיות ותוכניות עבודה.',
+  brand:'א. פרביצקיה · עיצוב פנים',navLabel:'מדורים',navServices:'שירותים',navOffice:'משרד',navCottage:'קוטג׳',navRenders:'הדמיות תלת-ממד',navContact:'צור קשר',
+  name:'אנסטסיה פרביצקיה',role:'מעצבת פנים ומומחית להדמיות תלת-ממד',
+  lead:'למעלה מ-50 פרויקטים של עיצוב פנים בסנט פטרבורג: דירות, קוטג׳ים, משרדים וחנות תקליטים. אני מלווה כל פרויקט מהבריף והמדידה באתר, דרך תכנון החלל, הדמיית תלת-ממד של כל חדר, סט מלא של תוכניות עבודה ובחירת ריהוט וחומרים, ועד פיקוח עליון בזמן הביצוע.',
+  selected:'עבודות נבחרות.',location:'חיפה, ישראל · עבודה מרחוק',copy:'העתקת אימייל',copied:'הועתק',selectedTxt:'סומן',
+  openPhoto:'פתיחת תמונה',open:'פתיחה',coverAlt:'פנים משרד גמור: מדרגות פתוחות מעץ אלון ופלדה, רצפת אבן אפורה',
+  services:'שירותים',mainService:'השירות המרכזי',svcAiH:'מתמונות AI או Pinterest לפרויקט מוכן לביצוע',
+  svcAiP:'שלחו לי תמונות פנים שנוצרו בבינה מלאכותית או נשמרו ב-Pinterest, יחד עם תוכנית של החלל. אהפוך אותן להדמיית תלת-ממד מדויקת של החדר שלכם ולסט תוכניות ביצוע שהקבלן יוכל לעבוד לפיהן.',
+  svc1H:'הדמיית תלת-ממד לפי סקיצות',svc1P:'הדמיות תלת-ממד פוטוריאליסטיות של כל חדר לפי הסקיצות או תמונות ההשראה שלכם.',
+  svc2H:'תוכניות ביצוע מתוך תלת-ממד',svc2P:'סט מלא של תוכניות עבודה מתוך הדמיה או מודל תלת-ממד קיים: תוכניות, חשמל ותאורה, אינסטלציה, פריסות קירות, מפרט גמרים.',
+  svc3H:'תכנון מחדש והעמדת ריהוט',svc3P:'חלופות לתכנון מחדש של דירה או בית, ותוכניות העמדת ריהוט.',
+  svc4H:'ארגונומיה ונוחות',svc4P:'ייעוץ איך להפוך את החלל לנוח ונעים למגורים ולעבודה.',
+  lObject:'פרויקט',lCity:'עיר',lStages:'שלבים',lStatus:'סטטוס',lArea:'שטח',lSection:'מדור',lObjects:'פרויקטים',lSoftware:'תוכנות',lImages:'תמונות',
+  officeName:'משרד, הסוללה האנגלית',spb:'סנט פטרבורג',officeStages:'תלת-ממד · תוכניות עבודה',officeStatus:'בוצע, צולם ב-2022',
+  officeIntro:'משרד דו-מפלסי עם מדרגות פתוחות, מחיצות זכוכית במסגרות פלדה שחורות ותאורה לינארית תלויה. למטה: הדמיות התלת-ממד לצד תמונות של החללים הגמורים.',
+  hPairs:'ההדמיה והחדר הבנוי',hOfficePhotos:'תמונות של המשרד הגמור',hDrawings:'תוכניות עבודה',hCottagePhotos:'תמונות של הבית הגמור',hRenders:'הדמיות נבחרות',
+  cottageName:'קוטג׳ דו-קומתי, ורטמיאגי',cottageArea:'200 מ״ר',cottageStages:'תכנון מלא · פיקוח עליון',cottageStatus:'בוצע עד מפתח',
+  cottageIntro:'בית כפרי בסגנון פרובנס: רהיטים מצוירים, טפטים מפוספסים ופרחוניים, ריצוף אריחים במטבח וחדרי שינה בעליית הגג עם חלונות גג. שיפוץ עד מפתח עם קבלנים שותפים.',
+  rendersName:'הדמיות תלת-ממד',rendersObjects:'דירות, משרדים, חנות',rendersIntro:'מבחר הדמיות פוטוריאליסטיות מפרויקטים נוספים של הסטודיו.',
+  close:'סגירה',hint:'← → דפדוף · Esc סגירה',viewer:'צפייה בתמונות',prev:'הקודם',next:'הבא',
+  tag3d:'הדמיה',tagBuilt:'בוצע',altOffice:'פנים המשרד הגמור',altCottage:'פנים הקוטג׳ הגמור',
+  tOffice:'משרד · בוצע',tCottage:'קוטג׳ · בוצע',tRenders:'הדמיית תלת-ממד',tOfficeDwg:'משרד · תוכנית',tCottageDwg:'קוטג׳ · תוכנית',
+  c_livingKitchen:'סלון עם מטבח',c_shop:'חנות תקליטים',c_loft:'סלון בסגנון לופט',c_living:'סלון',c_kitchenDining:'מטבח ופינת אוכל',c_bedroom:'חדר שינה',
+  c_office3d:'משרד, תוכנית תלת-ממד',c_apt3d:'דירה, תוכנית תלת-ממד',c_bathroom:'חדר רחצה',
+  d_officeFurn:'תוכנית העמדת ריהוט, קומת קרקע · 1:50',d_officeLight:'תוכנית תאורה, קומת קרקע · 1:50',d_cottageFurn:'תוכנית העמדת ריהוט, קומת קרקע · 1:100',d_cottageBath:'פריסות קירות, חדר רחצה, קומה ב׳ · 1:50',
+  p_hall:'לובי הכניסה עם המדרגות',p_kitchen:'נישת מטבח מאחורי מחיצת הזכוכית',p_glass:'חדר זכוכית מתחת לקורות התקרה',p_veranda:'פינת אוכל במרפסת המזוגגת'}
+};
+const LANGS=['en','ru','he'];
+let L=(()=>{const q=new URLSearchParams(location.search).get('lang');if(LANGS.includes(q))return q;
+  try{const s=localStorage.getItem('lang');if(LANGS.includes(s))return s}catch(_){}
+  const n=(navigator.language||'').slice(0,2).toLowerCase();return n==='ru'?'ru':(n==='he'||n==='iw')?'he':'en'})();
+const t=k=>(T[L]&&T[L][k])||T.en[k]||k;
+const rtl=()=>L==='he';
+
 const O='office/20220614-792A', C='cottage/IMG_';
 const sets={
-  cover:[{f:O+'1252-HDR',c:'Office, English Embankment'}],
+  cover:[{f:O+'1252-HDR',c:'officeName'}],
   office:[
     {f:O+'1173-HDR',w:533,h:800},{f:O+'1192-HDR'},{f:O+'1187-HDR'},{f:O+'1237-HDR'},
     {f:O+'1281-HDR',w:533,h:800},{f:O+'1272-HDR'}],
@@ -246,57 +349,76 @@ const sets={
     {f:C+'2630'},{f:C+'2652',w:533,h:800},{f:C+'2681'},{f:C+'2615'},{f:C+'2706'},{f:C+'2748'},{f:C+'2410'},
     {f:C+'2345',w:533,h:800},{f:C+'2478'},{f:C+'2568',w:533,h:800},{f:C+'2530'},{f:C+'2771',w:533,h:800}],
   renders:[
-    {f:'72_Ps',w:800,h:586,c:'Living room with kitchen'},{f:'8_Ps',h:600,c:'Record shop'},{f:'33_Ps',w:800,h:533,c:'Loft living room'},
-    {f:'53_Ps',h:600,c:'Living room'},{f:'52_Ps',h:600,c:'Kitchen and dining'},{f:'52_Ps_3',w:800,h:533,c:'Bedroom'},
-    {f:'21_Ps_2',w:800,h:620,c:'Bedroom'},{f:'13_Ps',w:800,h:800,c:'Living room'},{f:'57_Ps',h:600,c:'Living room'},
-    {f:'40_Ps',w:800,h:628,c:'Office, 3D plan'},{f:'78_Ps',w:800,h:735,c:'Apartment, 3D plan'},
-    {f:'10_Ps',w:784,h:800,c:'Bathroom'}],
-  officeDwg:[{f:'Plan_1',c:'Furniture layout, ground floor · 1:50'},{f:'Plan_2',c:'Lighting plan, ground floor · 1:50'}],
-  cottageDwg:[{f:'Plan_3',c:'Furniture layout, ground floor · 1:100'},{f:'Plan_4',c:'Wall elevations, bathroom, first floor · 1:50'}],
+    {f:'72_Ps',w:800,h:586,c:'c_livingKitchen'},{f:'8_Ps',h:600,c:'c_shop'},{f:'33_Ps',w:800,h:533,c:'c_loft'},
+    {f:'53_Ps',h:600,c:'c_living'},{f:'52_Ps',h:600,c:'c_kitchenDining'},{f:'52_Ps_3',w:800,h:533,c:'c_bedroom'},
+    {f:'21_Ps_2',w:800,h:620,c:'c_bedroom'},{f:'13_Ps',w:800,h:800,c:'c_living'},{f:'57_Ps',h:600,c:'c_living'},
+    {f:'40_Ps',w:800,h:628,c:'c_office3d'},{f:'78_Ps',w:800,h:735,c:'c_apt3d'},
+    {f:'10_Ps',w:784,h:800,c:'c_bathroom'}],
+  officeDwg:[{f:'Plan_1',c:'d_officeFurn'},{f:'Plan_2',c:'d_officeLight'}],
+  cottageDwg:[{f:'Plan_3',c:'d_cottageFurn'},{f:'Plan_4',c:'d_cottageBath'}],
 };
 const pairs={
-  office:[
-    {r:'25_Ps_2',p:O+'1252-HDR',c:'Entrance hall with the staircase'},
-    {r:'48_Ps',p:O+'1182-HDR',c:'Kitchen niche behind the glass partition'},
-    {r:'20_Ps_2',p:O+'1275-HDR',c:'Glass-walled room under the ceiling beams'}],
-  cottage:[{r:'9_Ps',p:C+'2775',c:'Dining room on the glazed veranda'}],
+  office:[{r:'25_Ps_2',p:O+'1252-HDR',c:'p_hall'},{r:'48_Ps',p:O+'1182-HDR',c:'p_kitchen'},{r:'20_Ps_2',p:O+'1275-HDR',c:'p_glass'}],
+  cottage:[{r:'9_Ps',p:C+'2775',c:'p_veranda'}],
 };
 // pair images join a lightbox set per project, render then photo
-for(const k in pairs){sets[k+'Pairs']=pairs[k].flatMap(x=>[{f:x.r,c:x.c+' · 3D'},{f:x.p,c:x.c+' · built'}])}
+for(const k in pairs){sets[k+'Pairs']=pairs[k].flatMap(x=>[{f:x.r,c:x.c,s:'tag3d'},{f:x.p,c:x.c,s:'tagBuilt'}])}
+const titles={office:'tOffice',cottage:'tCottage',renders:'tRenders',officeDwg:'tOfficeDwg',cottageDwg:'tCottageDwg'};
+const capOf=(set,x)=>x.c?t(x.c)+(x.s?' · '+t(x.s):''):(titles[set]?t(titles[set]):'');
 
 const W=(x)=>x.w||800, H=(x)=>x.h||533;
-const el=(t,a={},kids=[])=>{const e=document.createElement(t);for(const k in a){k in e&&k!=='list'?e[k]=a[k]:e.setAttribute(k,a[k])}kids.forEach(c=>e.append(c));return e};
-const thumb=(x,alt)=>el('img',{src:'img/thumb/'+x.f+'.webp',alt,loading:'lazy',decoding:'async',width:W(x),height:H(x)});
-const opener=(set,i,label)=>{const b=el('button',{type:'button'});b.dataset.set=set;b.dataset.i=i;b.setAttribute('aria-label','Open '+label);return b};
+const el=(tag,a={},kids=[])=>{const e=document.createElement(tag);for(const k in a){k in e?e[k]=a[k]:e.setAttribute(k,a[k])}kids.forEach(c=>e.append(c));return e};
+const opener=(set,i,label)=>{const b=el('button',{type:'button'});b.dataset.set=set;b.dataset.i=i;b.setAttribute('aria-label',t('open')+': '+label);return b};
 
-document.querySelectorAll('[data-grid]').forEach(g=>{
-  const k=g.dataset.grid;
-  sets[k].forEach((x,i)=>{
-    const alt=x.c||(k==='office'?'Completed office interior':'Completed cottage interior');
-    const b=opener(k,i,alt);b.append(thumb(x,alt));if(x.c)b.append(el('span',{className:'cap',textContent:x.c}));g.append(b)});
-});
-document.querySelectorAll('[data-pairs]').forEach(g=>{
-  const k=g.dataset.pairs;
-  pairs[k].forEach((x,i)=>{
-    const row=el('div',{className:'pair'});
-    [[x.r,'3D visualization','',2*i],[x.p,'Built','built',2*i+1]].forEach(([f,t,cls,idx])=>{
-      const b=opener(k+'Pairs',idx,x.c+', '+t);b.append(el('img',{src:'img/thumb/'+f+'.webp',alt:x.c+', '+t,loading:'lazy'}));
-      row.append(el('figure',{},[b,el('span',{className:'tag '+cls,textContent:t})]))});
-    row.append(el('figcaption',{textContent:x.c}));g.append(row)});
-});
-document.querySelectorAll('[data-sheets]').forEach(g=>{
-  const k=g.dataset.sheets;
-  sets[k].forEach((x,i)=>{const b=opener(k,i,x.c);b.append(el('img',{src:'img/thumb/'+x.f+'.webp',alt:x.c,loading:'lazy'}));
-    g.append(el('figure',{},[b,el('figcaption',{textContent:x.c})]))});
-});
-document.querySelector('[data-count="renders"]').textContent=sets.renders.length;
+function render(){
+  document.querySelectorAll('[data-grid]').forEach(g=>{
+    const k=g.dataset.grid;g.replaceChildren();
+    sets[k].forEach((x,i)=>{
+      const alt=x.c?t(x.c):t(k==='office'?'altOffice':'altCottage');
+      const b=opener(k,i,alt);b.append(el('img',{src:'img/thumb/'+x.f+'.webp',alt,loading:'lazy',decoding:'async',width:W(x),height:H(x)}));
+      if(x.c)b.append(el('span',{className:'cap',textContent:t(x.c)}));g.append(b)});
+  });
+  document.querySelectorAll('[data-pairs]').forEach(g=>{
+    const k=g.dataset.pairs;g.replaceChildren();
+    pairs[k].forEach((x,i)=>{
+      const row=el('div',{className:'pair'});
+      [[x.r,t('tag3d'),'',2*i],[x.p,t('tagBuilt'),'built',2*i+1]].forEach(([f,tg,cls,idx])=>{
+        const label=t(x.c)+', '+tg;
+        const b=opener(k+'Pairs',idx,label);b.append(el('img',{src:'img/thumb/'+f+'.webp',alt:label,loading:'lazy'}));
+        row.append(el('figure',{},[b,el('span',{className:'tag '+cls,textContent:tg})]))});
+      row.append(el('figcaption',{textContent:t(x.c)}));g.append(row)});
+  });
+  document.querySelectorAll('[data-sheets]').forEach(g=>{
+    const k=g.dataset.sheets;g.replaceChildren();
+    sets[k].forEach((x,i)=>{const b=opener(k,i,t(x.c));b.append(el('img',{src:'img/thumb/'+x.f+'.webp',alt:t(x.c),loading:'lazy'}));
+      g.append(el('figure',{},[b,el('figcaption',{textContent:t(x.c)})]))});
+  });
+  document.querySelector('[data-count="renders"]').textContent=sets.renders.length;
+}
+
+function apply(){
+  const r=document.documentElement;r.lang=L;r.dir=rtl()?'rtl':'ltr';
+  document.title=t('title');document.querySelector('meta[name=description]').content=t('desc');
+  document.querySelectorAll('[data-t]').forEach(e=>e.textContent=t(e.dataset.t));
+  document.querySelectorAll('[data-ta]').forEach(e=>e.setAttribute('aria-label',t(e.dataset.ta)));
+  document.querySelectorAll('[data-talt]').forEach(e=>e.alt=t(e.dataset.talt));
+  document.querySelectorAll('[data-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===L)));
+  render();
+  if(!lb.hidden)show();
+}
+function setLang(l){
+  L=l;try{localStorage.setItem('lang',l)}catch(_){}
+  const u=new URL(location.href);if(l==='en')u.searchParams.delete('lang');else u.searchParams.set('lang',l);
+  try{history.replaceState(null,'',u)}catch(_){}
+  apply();
+}
+document.querySelectorAll('[data-lang]').forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
 
 // lightbox
 const lb=document.getElementById('lb'),img=document.getElementById('lbImg'),cap=document.getElementById('lbCap'),num=document.getElementById('lbNum');
 let cur=null,idx=0,last=null;
-const titles={office:'Office · completed',cottage:'Cottage · completed',renders:'3D visualization',officeDwg:'Office · drawing',cottageDwg:'Cottage · drawing',cover:''};
-function show(){const x=sets[cur][idx];img.src='img/full/'+x.f+'.webp';img.alt=x.c||titles[cur]||'';
-  cap.textContent=x.c||titles[cur]||'';num.textContent=(idx+1)+' / '+sets[cur].length;
+function show(){const x=sets[cur][idx];img.src='img/full/'+x.f+'.webp';const c=capOf(cur,x);img.alt=c;cap.textContent=c;
+  num.textContent=(idx+1)+' / '+sets[cur].length;
   const n=sets[cur][(idx+1)%sets[cur].length];new Image().src='img/full/'+n.f+'.webp';
   const one=sets[cur].length<2;document.getElementById('lbPrev').hidden=one;document.getElementById('lbNext').hidden=one}
 function open(set,i,from){cur=set;idx=i;last=from;show();lb.hidden=false;document.body.style.overflow='hidden';document.getElementById('lbClose').focus()}
@@ -307,14 +429,17 @@ document.getElementById('lbClose').onclick=close;
 document.getElementById('lbPrev').onclick=()=>step(-1);
 document.getElementById('lbNext').onclick=()=>step(1);
 lb.addEventListener('click',e=>{if(e.target===lb||e.target.classList.contains('stage'))close()});
-document.addEventListener('keydown',e=>{if(lb.hidden)return;if(e.key==='Escape')close();if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1)});
+document.addEventListener('keydown',e=>{if(lb.hidden)return;if(e.key==='Escape')close();
+  if(e.key==='ArrowRight')step(rtl()?-1:1);if(e.key==='ArrowLeft')step(rtl()?1:-1)});
 let sx=null;lb.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
-lb.addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)step(dx<0?1:-1);sx=null});
+lb.addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)step((dx<0)!==rtl()?1:-1);sx=null});
 
 document.querySelectorAll('.copy').forEach(b=>b.onclick=async()=>{const a=b.parentNode.querySelector('.addr');
-  try{await navigator.clipboard.writeText(a.textContent);b.textContent='Copied'}
-  catch(_){const r=document.createRange();r.selectNodeContents(a);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected'}
-  setTimeout(()=>b.textContent='Copy email',1800)});
+  try{await navigator.clipboard.writeText(a.textContent);b.textContent=t('copied')}
+  catch(_){const r=document.createRange();r.selectNodeContents(a);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent=t('selectedTxt')}
+  setTimeout(()=>b.textContent=t('copy'),1800)});
+
+apply();
 </script>
 </body>
 </html>
