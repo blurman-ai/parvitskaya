@@ -49,7 +49,7 @@ a{color:inherit}
 .tools{font-family:var(--f-mono);font-size:12.5px;color:var(--muted);letter-spacing:.02em}
 .note{border-left:2px solid var(--stamp);padding-left:12px;color:var(--ink);font-weight:500}
 .mail{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-family:var(--f-mono);font-size:14px}
-.mail span{user-select:all}
+.mail .addr{color:var(--ink);text-underline-offset:3px}
 .btn{font:inherit;font-size:12px;text-transform:uppercase;letter-spacing:.06em;border:1px solid var(--ink);background:transparent;color:var(--ink);
   padding:6px 12px;cursor:pointer;border-radius:0}
 .btn:hover{background:var(--ink);color:var(--paper)}
@@ -141,6 +141,7 @@ footer .name{font-family:var(--f-display);font-stretch:118%;font-weight:720;font
       <p class="note">Selected work.</p>
       <p class="tools">3ds Max · Corona · V-Ray · SketchUp · AutoCAD · CorelDRAW · Photoshop</p>
       <p class="tools">Haifa, Israel · working remotely</p>
+      <div class="mail"><a class="addr" href="mailto:Parnast134@gmail.com">Parnast134@gmail.com</a><button class="btn copy" type="button">Copy email</button></div>
     </div>
   </section>
 
@@ -192,7 +193,7 @@ footer .name{font-family:var(--f-display);font-stretch:118%;font-weight:720;font
 
   <footer id="contact">
     <div class="name">Anastasia Parvitskaya</div>
-    <div class="mail"><span id="email">Parnast134@gmail.com</span><button class="btn" type="button" id="copy">Copy email</button></div>
+    <div class="mail"><a class="addr" href="mailto:Parnast134@gmail.com">Parnast134@gmail.com</a><button class="btn copy" type="button">Copy email</button></div>
   </footer>
 </div>
 
@@ -282,10 +283,10 @@ document.addEventListener('keydown',e=>{if(lb.hidden)return;if(e.key==='Escape')
 let sx=null;lb.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
 lb.addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)step(dx<0?1:-1);sx=null});
 
-document.getElementById('copy').onclick=async()=>{const b=document.getElementById('copy');
-  try{await navigator.clipboard.writeText('Parnast134@gmail.com');b.textContent='Copied'}
-  catch(_){const r=document.createRange();r.selectNodeContents(document.getElementById('email'));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected'}
-  setTimeout(()=>b.textContent='Copy email',1800)};
+document.querySelectorAll('.copy').forEach(b=>b.onclick=async()=>{const a=b.parentNode.querySelector('.addr');
+  try{await navigator.clipboard.writeText(a.textContent);b.textContent='Copied'}
+  catch(_){const r=document.createRange();r.selectNodeContents(a);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected'}
+  setTimeout(()=>b.textContent='Copy email',1800)});
 </script>
 </body>
 </html>
